@@ -1,0 +1,710 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>SDD Desarrollador JR</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Concepto: plano técnico. Un documento SDD numerado con una ventana de parallax tipo plano en la portada. */
+:root{
+  --paper:#F2F5F9; --surface:#FFFFFF; --surface-2:#E8EDF4;
+  --ink:#0D1B2E; --ink-2:#4A5B72; --line:#CBD5E3;
+  --accent:#0A55FF; --accent-ink:#FFFFFF; --accent-soft:#DCE6FF;
+  --amber:#F2A900; --amber-ink:#2A1C00;
+  --ok:#0E7A55;
+  --grid:rgba(10,85,255,.10);
+  --mark-bg:#0A4FE6; --mark-fg:#FFFFFF; --mark-px:#FFC53D;
+  --f-display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0A1424; --surface:#101D33; --surface-2:#16253F;
+    --ink:#E7EDF7; --ink-2:#9FB0C9; --line:#243553;
+    --accent:#6B97FF; --accent-ink:#06101F; --accent-soft:#16294F;
+    --amber:#F5B93A; --amber-ink:#2A1C00;
+    --ok:#4CC38A;
+    --grid:rgba(107,151,255,.13);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0A1424; --surface:#101D33; --surface-2:#16253F;
+  --ink:#E7EDF7; --ink-2:#9FB0C9; --line:#243553;
+  --accent:#6B97FF; --accent-ink:#06101F; --accent-soft:#16294F;
+  --amber:#F5B93A; --amber-ink:#2A1C00;
+  --ok:#4CC38A;
+  --grid:rgba(107,151,255,.13);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.6 var(--f-body);-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--paper)}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+h1,h2,h3{font-family:var(--f-display);margin:0;text-wrap:balance;letter-spacing:-.01em}
+p{margin:0}
+ul,ol{margin:0;padding:0;list-style:none}
+.wrap{max-width:1180px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.mono{font-family:var(--f-mono)}
+.label{font:500 11px/1.3 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
+svg.ic,.ic svg{width:1.15em;height:1.15em;stroke-width:1.75}
+
+/* Barra superior */
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);border-bottom:1px solid var(--line)}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:10px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);min-width:0}
+.brand .mark{width:38px;height:38px;flex:none}
+.brand b{display:block;font:700 18px/1.1 var(--f-display);font-stretch:90%}
+.brand small{display:block;font:500 10px/1.3 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
+.navlinks{display:none;gap:4px}
+.navlinks a{padding:8px 12px;border-radius:4px;color:var(--ink-2);text-decoration:none;font-size:14px;font-weight:500}
+.navlinks a:hover{color:var(--ink);background:var(--surface-2)}
+@media (min-width:960px){.navlinks{display:flex}}
+.iconbtn{display:inline-grid;place-items:center;width:40px;height:40px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:6px;cursor:pointer}
+.iconbtn:hover{border-color:var(--accent)}
+.iconbtn svg{width:18px;height:18px}
+.ico-sun{display:none}
+:root[data-theme="dark"] .ico-sun{display:block}
+:root[data-theme="dark"] .ico-moon{display:none}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .ico-sun{display:block}
+  :root:not([data-theme="light"]) .ico-moon{display:none}
+}
+
+/* Portada */
+.hero{display:grid;grid-template-columns:1fr;gap:32px;padding-block:40px 48px;align-items:center}
+@media (min-width:900px){.hero{grid-template-columns:1.1fr .9fr;gap:48px;padding-block:64px 72px}}
+.hero > *{min-width:0}
+.docid{display:inline-flex;flex-wrap:wrap;gap:8px 14px;font:500 12px/1.4 var(--f-mono);color:var(--ink-2);letter-spacing:.06em}
+.docid span:first-child{color:var(--accent)}
+.hero h1{font-size:clamp(44px,8vw,92px);line-height:.98;font-weight:750;font-stretch:84%;margin-block:18px 18px}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero .lede{font-size:18px;max-width:52ch;color:var(--ink-2)}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:6px;font:600 15px/1 var(--f-body);text-decoration:none;border:1px solid var(--line);color:var(--ink);background:var(--surface);cursor:pointer}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn.primary:hover{filter:brightness(1.08)}
+.btn svg{width:18px;height:18px}
+.facts{display:flex;flex-wrap:wrap;gap:12px 36px;margin-top:36px;padding-top:20px;border-top:1px solid var(--line)}
+.facts div{min-width:110px}
+.facts b{display:block;font:700 34px/1 var(--f-display);font-stretch:85%;font-variant-numeric:tabular-nums}
+.facts span{font-size:13px;color:var(--ink-2)}
+
+/* Ventana parallax */
+.stage{position:relative;width:100%;max-width:480px;margin-inline:auto;aspect-ratio:1/1;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--surface)}
+.pl{position:absolute;transition:transform .22s ease-out;will-change:transform}
+.pl.fill{inset:0}
+.pl.grid{inset:-14%;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:32px 32px}
+.pl.fine{inset:-14%;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:8px 8px;opacity:.5}
+.blueprint{width:100%;height:100%;display:block}
+.blueprint .ln{stroke:var(--accent);fill:none;stroke-width:1;opacity:.55}
+.blueprint .ln.s{opacity:.9}
+.blueprint .dash{stroke-dasharray:3 6}
+.blueprint text{font:500 10px var(--f-mono);fill:var(--ink-2);letter-spacing:.08em}
+#ring{transform-box:fill-box;transform-origin:center}
+.centermark{display:grid;place-items:center}
+.bigmark{width:36%;aspect-ratio:1;display:block;filter:drop-shadow(0 10px 24px rgba(10,79,230,.28))}
+.tagchip{display:inline-block;padding:6px 10px;border:1px solid var(--line);background:var(--surface);border-radius:4px;font:500 12px/1 var(--f-mono);color:var(--ink);white-space:nowrap}
+.tagchip.hot{background:var(--amber);color:var(--amber-ink);border-color:var(--amber)}
+.stage .pl.chipbox{pointer-events:none}
+
+/* Documento */
+.doc{display:grid;grid-template-columns:minmax(0,1fr);gap:24px;padding-bottom:72px}
+@media (min-width:1080px){.doc{grid-template-columns:210px minmax(0,1fr);gap:56px}}
+.toc{align-self:start;border:1px solid var(--line);background:var(--surface);border-radius:6px;padding:16px}
+.toc ol{display:grid;grid-template-columns:1fr 1fr;gap:2px 12px;margin-top:10px}
+.toc a{display:flex;gap:10px;padding:6px 8px;border-radius:4px;color:var(--ink-2);text-decoration:none;font-size:14px;font-weight:500}
+.toc a i{font:500 12px/1.7 var(--f-mono);color:var(--ink-2);font-style:normal}
+.toc a:hover{background:var(--surface-2);color:var(--ink)}
+.toc a.on{background:var(--accent-soft);color:var(--ink)}
+.toc a.on i{color:var(--accent)}
+@media (min-width:1080px){
+  .toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 84px);border:0;background:transparent;padding:0}
+  .toc ol{grid-template-columns:1fr;gap:2px}
+}
+main{min-width:0}
+.ctrl{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.ctrl div{background:var(--surface);padding:12px 14px}
+.ctrl dt{font:500 10px/1.3 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
+.ctrl dd{margin:4px 0 0;font-weight:500;font-size:15px}
+.ctrl dd.ok{color:var(--ok)}
+.sec{padding-block:56px 8px;scroll-margin-top:calc(env(safe-area-inset-top,0px) + 72px)}
+.sec + .sec{border-top:1px solid var(--line);margin-top:48px}
+.sec > h2{display:flex;align-items:baseline;gap:14px;font-size:clamp(30px,4.4vw,44px);line-height:1.05;font-weight:700;font-stretch:88%}
+.sec > h2 i{font:500 15px/1 var(--f-mono);font-style:normal;color:var(--accent);letter-spacing:.04em}
+.sec .intro{margin-top:14px;max-width:64ch;color:var(--ink-2)}
+.sub{margin-top:36px}
+.sub h3{display:flex;align-items:baseline;gap:10px;font-size:21px;font-weight:650;font-stretch:92%;margin-bottom:12px}
+.sub h3 i{font:500 13px/1 var(--f-mono);font-style:normal;color:var(--accent)}
+.sub p{max-width:68ch}
+.sub p + p{margin-top:10px}
+.two{display:grid;grid-template-columns:1fr;gap:20px}
+.two > *{min-width:0}
+@media (min-width:760px){.two{grid-template-columns:1fr 1fr;gap:28px}}
+.defs{display:grid;gap:10px}
+.defs div{display:grid;grid-template-columns:96px 1fr;gap:12px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.defs dt{font:500 13px/1.5 var(--f-mono);color:var(--accent)}
+.defs dd{margin:0;font-size:15px;color:var(--ink-2)}
+.refs li{display:flex;gap:10px;align-items:baseline;padding:7px 0;border-bottom:1px solid var(--line);font-size:15px;color:var(--ink-2)}
+.refs li span{font:500 12px/1 var(--f-mono);color:var(--accent);flex:none}
+
+/* Tarjetas */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px;min-width:0}
+.card .ic{display:inline-grid;place-items:center;width:38px;height:38px;border-radius:6px;background:var(--accent-soft);color:var(--accent);margin-bottom:12px}
+.card h4{margin:0 0 6px;font:650 17px/1.25 var(--f-display);font-stretch:92%}
+.card p{font-size:14.5px;color:var(--ink-2)}
+.card .tags{margin-top:12px}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tags li{padding:4px 8px;border:1px solid var(--line);border-radius:4px;font:500 11.5px/1.2 var(--f-mono);color:var(--ink-2);background:var(--paper)}
+.principles{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--surface)}
+.principles li{padding:16px 18px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);margin:0 -1px -1px 0;font-size:14.5px;color:var(--ink-2)}
+.principles b{display:block;color:var(--ink);font-weight:600;margin-bottom:4px}
+
+/* Arquitectura */
+.tiers{display:grid;gap:0}
+.tier{display:grid;grid-template-columns:1fr;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 16px}
+@media (min-width:760px){.tier{grid-template-columns:150px 1fr;align-items:center;gap:16px}}
+.tier .label{display:flex;align-items:center;gap:8px;color:var(--accent)}
+.tier .label svg{width:16px;height:16px}
+.nodes{display:flex;flex-wrap:wrap;gap:8px}
+.nodes li{padding:7px 11px;border:1px solid var(--line);border-radius:4px;background:var(--paper);font:500 13px/1.2 var(--f-mono)}
+.nodes li.k{border-color:var(--accent);background:var(--accent-soft)}
+.flow{height:30px;display:block;width:100%}
+.flow line{stroke:var(--accent);stroke-width:1.5;stroke-dasharray:4 6;opacity:.8}
+.flow polygon{fill:var(--accent)}
+.steps{counter-reset:s;display:grid;grid-template-columns:1fr;gap:0;border:1px solid var(--line);border-radius:6px;background:var(--surface);overflow:hidden}
+@media (min-width:900px){.steps{grid-template-columns:repeat(5,1fr)}}
+.steps li{counter-increment:s;padding:16px;border-bottom:1px solid var(--line);font-size:14px;color:var(--ink-2);min-width:0}
+@media (min-width:900px){.steps li{border-bottom:0;border-right:1px solid var(--line)}.steps li:last-child{border-right:0}}
+.steps li:last-child{border-bottom:0}
+.steps li::before{content:"0" counter(s);display:block;font:500 12px/1 var(--f-mono);color:var(--accent);margin-bottom:8px}
+.steps b{display:block;color:var(--ink);font-weight:600;margin-bottom:4px;font-size:15px}
+.note{margin-top:12px;font-size:14px;color:var(--ink-2);display:flex;gap:8px;align-items:flex-start}
+.note svg{width:16px;height:16px;flex:none;margin-top:3px;color:var(--amber)}
+
+/* Módulos */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.fchip{padding:8px 14px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;font:500 13px/1 var(--f-body);cursor:pointer}
+.fchip:hover{border-color:var(--accent)}
+.fchip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.count{margin-top:12px;font:500 12px/1 var(--f-mono);color:var(--ink-2)}
+.mods{display:grid;grid-template-columns:1fr;gap:16px;margin-top:16px}
+@media (min-width:900px){.mods{grid-template-columns:1fr 1fr}}
+.mod{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:20px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.mod[hidden]{display:none}
+.mod header{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.mid{font:500 12px/1 var(--f-mono);color:var(--accent);letter-spacing:.06em}
+.badges{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end}
+.badge{padding:3px 8px;border-radius:999px;background:var(--surface-2);font:500 11px/1.3 var(--f-mono);color:var(--ink-2)}
+.mt{display:flex;gap:12px;align-items:center}
+.mt .ic{display:inline-grid;place-items:center;flex:none;width:40px;height:40px;border-radius:6px;background:var(--accent-soft);color:var(--accent)}
+.mt h3{font-size:22px;line-height:1.1;font-weight:700;font-stretch:90%}
+.mod dl{margin:0;display:grid;gap:10px}
+.mod dt{font:500 10.5px/1.3 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
+.mod dd{margin:3px 0 0;font-size:14.5px}
+.mod dd ul{display:grid;gap:6px}
+.mod dd li{display:flex;gap:8px;color:var(--ink-2)}
+.mod dd li::before{content:"";flex:none;width:6px;height:6px;margin-top:8px;background:var(--accent)}
+.mod .tags{margin-top:auto}
+
+/* Datos */
+.layers{border:1px solid var(--line);border-radius:6px;background:var(--surface);overflow:hidden}
+.layers > div{display:grid;grid-template-columns:1fr;gap:8px;padding:14px 16px;border-bottom:1px solid var(--line)}
+.layers > div:last-child{border-bottom:0}
+@media (min-width:760px){.layers > div{grid-template-columns:170px 1fr;gap:16px;align-items:start}}
+.layers .label{padding-top:5px}
+.entities{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.entities .card h4{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.entities .card h4 small{font:500 11px/1 var(--f-mono);color:var(--ink-2)}
+.ent{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.ent li{padding:4px 8px;border-radius:3px;background:var(--surface-2);font:500 11.5px/1.3 var(--f-mono);color:var(--ink)}
+
+/* Calidad */
+.qa{border:1px solid var(--line);border-radius:6px;background:var(--surface);overflow:hidden}
+.qrow{display:grid;grid-template-columns:1fr;gap:6px;padding:16px;border-bottom:1px solid var(--line)}
+.qrow:last-child{border-bottom:0}
+@media (min-width:860px){.qrow{grid-template-columns:170px 1fr 190px;gap:24px;align-items:start}}
+.qrow > *{min-width:0}
+.qrow h4{margin:0;display:flex;gap:8px;align-items:center;font:650 16px/1.2 var(--f-display);font-stretch:92%}
+.qrow h4 svg{width:18px;height:18px;color:var(--accent)}
+.qrow p{font-size:14.5px;color:var(--ink-2)}
+.qrow .ev{display:flex;flex-wrap:wrap;gap:6px}
+.qrow .ev span{padding:3px 8px;border-radius:3px;background:var(--accent-soft);font:500 11.5px/1.3 var(--f-mono);color:var(--ink)}
+
+/* Crecimiento y contacto */
+.road{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.status{display:inline-block;margin-bottom:10px;padding:3px 8px;border-radius:3px;background:var(--amber);color:var(--amber-ink);font:500 11px/1.3 var(--f-mono);letter-spacing:.08em;text-transform:uppercase}
+.contact{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:24px}
+.contact .card{display:flex;flex-direction:column;gap:10px}
+.contact .val{font:500 18px/1.3 var(--f-mono);overflow-wrap:anywhere;user-select:all}
+.contact .row{display:flex;flex-wrap:wrap;gap:8px}
+footer.foot{border-top:1px solid var(--line);background:var(--surface)}
+footer.foot .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;align-items:center;padding-block:24px;font-size:13px;color:var(--ink-2)}
+footer.foot .brand{color:var(--ink)}
+.rv{will-change:transform}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="jr-mark" viewBox="0 0 64 64">
+    <rect x="2" y="2" width="60" height="60" rx="15" style="fill:var(--mark-bg)"/>
+    <path d="M24 17V38Q24 47 15 47" fill="none" stroke-width="6" stroke-linecap="square" style="stroke:var(--mark-fg)"/>
+    <path d="M36 47V17H45Q52 17 52 24.5Q52 32 45 32H36" fill="none" stroke-width="6" stroke-linecap="square" stroke-linejoin="miter" style="stroke:var(--mark-fg)"/>
+    <path d="M44 33L51 47" fill="none" stroke-width="6" stroke-linecap="square" style="stroke:var(--mark-px)"/>
+  </symbol>
+</svg>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="#inicio" aria-label="Desarrollador JR, inicio">
+      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><use href="#jr-mark"/></svg>
+      <span><b>Desarrollador JR</b><small>Junior Developer · CreaPx</small></span>
+    </a>
+    <nav class="navlinks" aria-label="Secciones">
+      <a href="#intro">Introducción</a>
+      <a href="#arquitectura">Arquitectura</a>
+      <a href="#modulos">Módulos</a>
+      <a href="#calidad">Calidad</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <button class="iconbtn" id="themeBtn" type="button" aria-label="Cambiar tema claro u oscuro">
+      <svg class="ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="wrap" id="inicio">
+  <section class="hero" aria-labelledby="h1">
+    <div>
+      <p class="docid rise"><span>SDD-JR-001</span><span>versión 1.0</span><span>2 nov 2026</span></p>
+      <h1 id="h1" class="rise">Desarrollador <em>JR</em></h1>
+      <p class="lede rise">Documento de diseño de software de un Junior Developer en CreaPx. Describe qué construyo, cómo lo diseño y con qué lo sostengo, desde la facturación electrónica de El Salvador hasta apps móviles y de escritorio.</p>
+      <div class="cta rise">
+        <a class="btn primary" href="#modulos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Ver los módulos</a>
+        <a class="btn" href="#contacto">Contactar</a>
+      </div>
+      <div class="facts rise">
+        <div><b data-count="10">10</b><span>módulos documentados</span></div>
+        <div><b data-count="6">6</b><span>tipos de DTE emitidos</span></div>
+        <div><b data-count="3">3</b><span>plataformas: web, móvil, escritorio</span></div>
+      </div>
+    </div>
+
+    <div class="stage" id="stage" aria-hidden="true">
+      <div class="pl grid" data-depth=".15"></div>
+      <div class="pl fine" data-depth=".3"></div>
+      <div class="pl fill" data-depth=".4">
+        <svg class="blueprint" viewBox="0 0 400 400">
+          <g id="ring">
+            <circle class="ln dash" cx="200" cy="200" r="158"/>
+            <path class="ln s" d="M200 34v12M200 354v12M34 200h12M354 200h12"/>
+          </g>
+          <circle class="ln" cx="200" cy="200" r="118"/>
+          <path class="ln dash" d="M200 20V380M20 200H380"/>
+          <path class="ln s" d="M76 330H324M76 324v12M324 324v12"/>
+          <text x="200" y="352" text-anchor="middle">64 px</text>
+          <text x="214" y="30">A · A</text>
+          <text x="30" y="222">R 32</text>
+        </svg>
+      </div>
+      <div class="pl fill centermark" data-depth=".75">
+        <svg class="bigmark" viewBox="0 0 64 64"><use href="#jr-mark"/></svg>
+      </div>
+      <div class="pl chipbox" data-depth="1.1" style="left:5%;top:9%"><span class="tagchip bob">DTE-01 · 03 · 05 · 06</span></div>
+      <div class="pl chipbox" data-depth="1.4" style="right:5%;top:19%"><span class="tagchip hot bob">JWS RS512</span></div>
+      <div class="pl chipbox" data-depth="1.25" style="left:6%;bottom:19%"><span class="tagchip bob">FEFO + PEPS</span></div>
+      <div class="pl chipbox" data-depth="1.6" style="right:8%;bottom:8%"><span class="tagchip bob">FastAPI · Flutter</span></div>
+    </div>
+  </section>
+
+  <div class="doc">
+    <nav class="toc" aria-label="Contenido del documento">
+      <span class="label">Contenido</span>
+      <ol id="toc">
+        <li><a href="#intro"><i>1</i>Introducción</a></li>
+        <li><a href="#perfil"><i>2</i>Perfil del autor</a></li>
+        <li><a href="#arquitectura"><i>3</i>Arquitectura</a></li>
+        <li><a href="#modulos"><i>4</i>Módulos</a></li>
+        <li><a href="#datos"><i>5</i>Datos y pila</a></li>
+        <li><a href="#calidad"><i>6</i>Calidad</a></li>
+        <li><a href="#crecimiento"><i>7</i>Crecimiento</a></li>
+        <li><a href="#contacto"><i>8</i>Contacto</a></li>
+      </ol>
+    </nav>
+
+    <main>
+      <dl class="ctrl rv" aria-label="Control del documento">
+        <div><dt>Documento</dt><dd class="mono">SDD-JR-001</dd></div>
+        <div><dt>Versión</dt><dd>1.0</dd></div>
+        <div><dt>Fecha</dt><dd>2 nov 2026</dd></div>
+        <div><dt>Autor</dt><dd>Desarrollador JR</dd></div>
+        <div><dt>Organización</dt><dd>CreaPx</dd></div>
+        <div><dt>Estado</dt><dd class="ok">Vigente</dd></div>
+      </dl>
+
+      <!-- 1 -->
+      <section class="sec" id="intro" aria-labelledby="t1">
+        <h2 id="t1"><i>1</i>Introducción</h2>
+        <div class="two sub">
+          <div class="rv">
+            <h3 style="margin-bottom:10px"><i>1.1</i>Propósito</h3>
+            <p>Este documento describe el diseño de los sistemas que construyo como Desarrollador JR en CreaPx: su arquitectura, sus decisiones técnicas y las reglas de negocio que cumplen. Funciona como carta de presentación técnica ante clientes, equipo y líderes de proyecto.</p>
+          </div>
+          <div class="rv">
+            <h3 style="margin-bottom:10px"><i>1.2</i>Alcance</h3>
+            <p>Cubre diez módulos: facturación electrónica DTE, libro de compras F-07, gestión médica, inventario de botiquín, recolección de facturas, plataformas contables, rastreo móvil, sitio institucional y soporte técnico. Cada módulo se documenta a partir de su README y del portafolio de CreaPx.</p>
+          </div>
+        </div>
+        <div class="two sub">
+          <div class="rv">
+            <h3><i>1.3</i>Definiciones</h3>
+            <dl class="defs">
+              <div><dt>SDD</dt><dd>Documento de diseño de software.</dd></div>
+              <div><dt>DTE</dt><dd>Documento Tributario Electrónico.</dd></div>
+              <div><dt>MH</dt><dd>Ministerio de Hacienda de El Salvador.</dd></div>
+              <div><dt>DGII</dt><dd>Dirección General de Impuestos Internos.</dd></div>
+              <div><dt>CCF</dt><dd>Comprobante de Crédito Fiscal.</dd></div>
+              <div><dt>FEFO</dt><dd>Primero en vencer, primero en salir.</dd></div>
+              <div><dt>PEPS</dt><dd>Primeras entradas, primeras salidas.</dd></div>
+              <div><dt>JWS RS512</dt><dd>Firma JSON con RSA y SHA-512.</dd></div>
+            </dl>
+          </div>
+          <div class="rv">
+            <h3><i>1.4</i>Referencias</h3>
+            <ul class="refs">
+              <li><span>R1</span>README de SVFE (sistema, frontend y firmador)</li>
+              <li><span>R2</span>README del Frontend PWA F-07 v14</li>
+              <li><span>R3</span>README del Backend OCR F-07 v14</li>
+              <li><span>R4</span>README del Sistema Médico</li>
+              <li><span>R5</span>README de P&amp;G Contadores</li>
+              <li><span>R6</span>README del Recolector de Facturas 2026</li>
+              <li><span>R7</span>README del Control de Inventario de Botiquín</li>
+              <li><span>R8</span>Estructura y servicios de CreaPx</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2 -->
+      <section class="sec" id="perfil" aria-labelledby="t2">
+        <h2 id="t2"><i>2</i>Perfil del autor</h2>
+        <div class="sub">
+          <h3 class="rv"><i>2.1</i>Rol y contexto</h3>
+          <p class="rv">Soy Desarrollador Junior en CreaPx, una empresa salvadoreña de automatización, software a medida e infraestructura de TI. Trabajo con ventas, community management y TI para llevar un requerimiento de un negocio pequeño hasta un sistema que se usa a diario.</p>
+        </div>
+        <div class="sub">
+          <h3 class="rv"><i>2.2</i>Competencias</h3>
+          <div class="cards">
+            <article class="card rv"><span class="ic"><i data-lucide="server"></i></span><h4>Backend y APIs</h4><p>Servicios REST con reglas de negocio, autenticación y persistencia.</p><ul class="tags"><li>Laravel</li><li>FastAPI</li><li>Node.js</li><li>Spring Boot</li></ul></article>
+            <article class="card rv"><span class="ic"><i data-lucide="layout-dashboard"></i></span><h4>Frontend y PWA</h4><p>Interfaces de captura rápida para digitación continua y punto de venta.</p><ul class="tags"><li>React 19</li><li>TypeScript</li><li>Vite</li><li>Tailwind</li></ul></article>
+            <article class="card rv"><span class="ic"><i data-lucide="smartphone"></i></span><h4>Móvil y escritorio</h4><p>Apps con estado predecible y tareas en segundo plano.</p><ul class="tags"><li>Flutter</li><li>BLoC / Cubit</li><li>PySide6</li><li>QThread</li></ul></article>
+            <article class="card rv"><span class="ic"><i data-lucide="database"></i></span><h4>Datos</h4><p>Modelos relacionales, correlativos atómicos y hojas de cálculo como base.</p><ul class="tags"><li>PostgreSQL</li><li>Neon</li><li>SQLAlchemy</li><li>Google Sheets</li></ul></article>
+            <article class="card rv"><span class="ic"><i data-lucide="container"></i></span><h4>DevOps</h4><p>Entornos iguales en local y producción, con validación automática.</p><ul class="tags"><li>Docker</li><li>Kustomize</li><li>GitHub Actions</li></ul></article>
+            <article class="card rv"><span class="ic"><i data-lucide="receipt"></i></span><h4>Fiscal El Salvador</h4><p>Reglas de Hacienda llevadas a código y verificadas con casos reales.</p><ul class="tags"><li>DTE</li><li>F-07</li><li>Anexos DGII</li></ul></article>
+          </div>
+        </div>
+        <div class="sub">
+          <h3 class="rv"><i>2.3</i>Forma de trabajo</h3>
+          <ul class="principles rv">
+            <li><b>Código limpio y modular</b>Separo controladores, modelos y servicios, como en el patrón MVC del Sistema Médico.</li>
+            <li><b>La norma manda</b>Las reglas de la DGII y de Hacienda se prueban con pruebas unitarias y cuadratura de IVA.</li>
+            <li><b>Documentación por componente</b>Cada módulo tiene su README con instalación, endpoints y reglas.</li>
+            <li><b>Entornos reproducibles</b>Docker Compose y manifiestos Kustomize igualan desarrollo y producción.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 3 -->
+      <section class="sec" id="arquitectura" aria-labelledby="t3">
+        <h2 id="t3"><i>3</i>Arquitectura</h2>
+        <p class="intro rv">Los módulos comparten un patrón de cuatro capas. Cambia la tecnología de cada capa según el cliente y el costo, y la separación se mantiene.</p>
+        <div class="sub">
+          <h3 class="rv"><i>3.1</i>Vista de contexto</h3>
+          <div class="tiers rv">
+            <div class="tier"><span class="label"><i data-lucide="monitor"></i>Clientes</span><ul class="nodes"><li class="k">Web React 19</li><li>PWA F-07</li><li>App Flutter</li><li>Escritorio PySide6</li></ul></div>
+            <svg class="flow" viewBox="0 0 400 30" preserveAspectRatio="none" aria-hidden="true"><line x1="80" y1="0" x2="80" y2="24"/><line x1="200" y1="0" x2="200" y2="24"/><line x1="320" y1="0" x2="320" y2="24"/><polygon points="75,24 85,24 80,30"/><polygon points="195,24 205,24 200,30"/><polygon points="315,24 325,24 320,30"/></svg>
+            <div class="tier"><span class="label"><i data-lucide="server"></i>Servicios</span><ul class="nodes"><li class="k">Laravel 12 · orquestación DTE</li><li class="k">Spring Boot · firma JWS</li><li>FastAPI · OCR y API contable</li><li>Node.js + Express</li><li>Google Apps Script</li></ul></div>
+            <svg class="flow" viewBox="0 0 400 30" preserveAspectRatio="none" aria-hidden="true"><line x1="80" y1="0" x2="80" y2="24"/><line x1="200" y1="0" x2="200" y2="24"/><line x1="320" y1="0" x2="320" y2="24"/><polygon points="75,24 85,24 80,30"/><polygon points="195,24 205,24 200,30"/><polygon points="315,24 325,24 320,30"/></svg>
+            <div class="tier"><span class="label"><i data-lucide="database"></i>Datos</span><ul class="nodes"><li class="k">PostgreSQL / Neon</li><li>Google Sheets</li><li>Dexie (IndexedDB)</li><li>SQLite</li></ul></div>
+            <svg class="flow" viewBox="0 0 400 30" preserveAspectRatio="none" aria-hidden="true"><line x1="80" y1="0" x2="80" y2="24"/><line x1="200" y1="0" x2="200" y2="24"/><line x1="320" y1="0" x2="320" y2="24"/><polygon points="75,24 85,24 80,30"/><polygon points="195,24 205,24 200,30"/><polygon points="315,24 325,24 320,30"/></svg>
+            <div class="tier"><span class="label"><i data-lucide="globe"></i>Externos</span><ul class="nodes"><li class="k">Ministerio de Hacienda</li><li>Gmail / IMAP</li><li>EmailJS</li><li>OpenStreetMap</li></ul></div>
+          </div>
+        </div>
+        <div class="sub">
+          <h3 class="rv"><i>3.2</i>Flujo de emisión de un DTE</h3>
+          <ol class="steps rv">
+            <li><b>Captura</b>El POS en React arma la venta con precios y receptor.</li>
+            <li><b>Cálculo</b>Laravel aplica IVA 13 % y retenciones con BCMath.</li>
+            <li><b>Firma</b>Spring Boot firma el JSON en JWS compacto RS512.</li>
+            <li><b>Transmisión</b>El backend envía a Hacienda y recibe el sello.</li>
+            <li><b>Entrega</b>PDF con QR y JSON firmado salen por correo.</li>
+          </ol>
+          <p class="note rv"><i data-lucide="triangle-alert"></i><span>Si Hacienda o la red no responden, el documento queda en un búfer local y se transmite después por lotes (contingencia).</span></p>
+        </div>
+      </section>
+
+      <!-- 4 -->
+      <section class="sec" id="modulos" aria-labelledby="t4">
+        <h2 id="t4"><i>4</i>Diseño detallado de módulos</h2>
+        <p class="intro rv">Cada ficha indica el problema que resuelve, las decisiones de diseño que lo sostienen y su pila. Filtra por tipo de solución.</p>
+        <div class="filters" id="filters" role="group" aria-label="Filtrar módulos por tipo"></div>
+        <p class="count" id="count" aria-live="polite"></p>
+        <div class="mods" id="mods"></div>
+      </section>
+
+      <!-- 5 -->
+      <section class="sec" id="datos" aria-labelledby="t5">
+        <h2 id="t5"><i>5</i>Datos y pila tecnológica</h2>
+        <div class="sub">
+          <h3 class="rv"><i>5.1</i>Pila por capa</h3>
+          <div class="layers rv">
+            <div><span class="label">Frontend y móvil</span><ul class="tags"><li>React</li><li>TypeScript</li><li>JavaScript ES6+</li><li>Flutter</li><li>PySide6</li><li>Tailwind CSS</li><li>Bootstrap 5</li><li>HTML5 / CSS3</li></ul></div>
+            <div><span class="label">Backend</span><ul class="tags"><li>Laravel</li><li>FastAPI</li><li>Python 3</li><li>Node.js</li><li>Spring Boot</li><li>Google Apps Script</li><li>WebSockets</li></ul></div>
+            <div><span class="label">Bases de datos</span><ul class="tags"><li>PostgreSQL</li><li>Neon serverless</li><li>SQLite</li><li>Google Sheets</li><li>MySQL</li></ul></div>
+            <div><span class="label">Integraciones</span><ul class="tags"><li>JWT</li><li>REST JSON/XML</li><li>IMAP / Gmail</li><li>EmailJS</li><li>OpenStreetMap</li><li>DTE</li><li>Excel / PDF</li></ul></div>
+            <div><span class="label">DevOps</span><ul class="tags"><li>Docker</li><li>Docker Compose</li><li>Kubernetes (Kustomize)</li><li>GitHub Actions</li><li>Cloudflare</li></ul></div>
+            <div><span class="label">Infraestructura física</span><ul class="tags"><li>CCTV IP y DVR</li><li>Aire acondicionado</li><li>Mantenimiento de hardware</li><li>Redes</li></ul></div>
+          </div>
+        </div>
+        <div class="sub">
+          <h3 class="rv"><i>5.2</i>Entidades principales</h3>
+          <div class="entities">
+            <article class="card rv"><h4>Botiquín <small>Google Sheets</small></h4><p>Ocho hojas con encabezados exactos en minúsculas.</p><ul class="ent"><li>PRODUCTOS</li><li>PROVEEDORES</li><li>LOTES</li><li>MOVIMIENTOS_INVENTARIO</li><li>DESPACHOS</li><li>USUARIOS</li><li>AUDITORIA</li><li>AJUSTES_INVENTARIO</li></ul></article>
+            <article class="card rv"><h4>Recolector de Facturas <small>PostgreSQL</small></h4><p>Tablas que se crean solas en el primer arranque.</p><ul class="ent"><li>licenses</li><li>device_logs</li><li>downloaded_messages</li><li>invoices</li><li>accounts_payable</li></ul></article>
+            <article class="card rv"><h4>Libro de compras F-07 <small>CSV DGII</small></h4><p>Registro de 21 columnas, delimitado por punto y coma y sin encabezados.</p><ul class="ent"><li>NIT/NRC (E)</li><li>Montos (G a O)</li><li>DUI (P)</li><li>Operación (Q)</li><li>Clasificación (R)</li><li>Sector (S)</li><li>Tipo de gasto (T)</li></ul></article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6 -->
+      <section class="sec" id="calidad" aria-labelledby="t6">
+        <h2 id="t6"><i>6</i>Atributos de calidad</h2>
+        <p class="intro rv">Cada atributo se vincula con la decisión de diseño que lo cumple y con el módulo donde ocurre.</p>
+        <div class="qa sub rv" style="margin-top:28px">
+          <div class="qrow"><h4><i data-lucide="shield-check"></i>Seguridad</h4><p>Firma JWS RS512 con Jose4j, JWT con Bcrypt, licencia cifrada con huella SHA-256 de hardware, roles de administrador y límite de 3 cambios de contraseña por 24 horas.</p><div class="ev"><span>MOD-01</span><span>MOD-03</span><span>MOD-05</span><span>MOD-07</span></div></div>
+          <div class="qrow"><h4><i data-lucide="scale"></i>Cumplimiento</h4><p>Exclusividad NIT y DUI, formato "0.00", 21 columnas del Anexo 3 y plazos de invalidación de 3 meses o décimo día hábil del mes siguiente.</p><div class="ev"><span>MOD-01</span><span>MOD-02</span></div></div>
+          <div class="qrow"><h4><i data-lucide="gauge"></i>Rendimiento</h4><p>Imágenes comprimidas en un Web Worker (menos de 800 KB, 1800 px) y un solo worker de Uvicorn dentro de 512 MB de RAM. BCMath evita errores de redondeo.</p><div class="ev"><span>MOD-01</span><span>MOD-02</span></div></div>
+          <div class="qrow"><h4><i data-lucide="cloud-off"></i>Disponibilidad</h4><p>Contingencia con búfer local, gracia offline de 72 horas para licencias y modo simulador local que funciona sin internet.</p><div class="ev"><span>MOD-01</span><span>MOD-04</span><span>MOD-05</span></div></div>
+          <div class="qrow"><h4><i data-lucide="git-branch"></i>Mantenibilidad</h4><p>MVC modular, README por componente, pruebas unitarias del validador de impuestos y CI que ejecuta lint y build en cada push.</p><div class="ev"><span>MOD-02</span><span>MOD-03</span><span>MOD-04</span></div></div>
+          <div class="qrow"><h4><i data-lucide="container"></i>Portabilidad</h4><p>Imágenes Docker multi-etapa con Nginx, Compose para local y producción y manifiestos Kustomize para Kubernetes.</p><div class="ev"><span>MOD-01</span><span>MOD-04</span></div></div>
+        </div>
+      </section>
+
+      <!-- 7 -->
+      <section class="sec" id="crecimiento" aria-labelledby="t7">
+        <h2 id="t7"><i>7</i>Línea de crecimiento</h2>
+        <p class="intro rv">Diseños propuestos que todavía no existen. Salen del roadmap de P&amp;G Contadores.</p>
+        <div class="road sub">
+          <article class="card rv"><span class="status">Propuesto</span><h4>Dashboard analítico</h4><p>Gráficos de ingresos contra gastos y facturación mensual con Recharts o Chart.js.</p></article>
+          <article class="card rv"><span class="status">Propuesto</span><h4>Lectura de PDF con OCR</h4><p>Extraer texto de facturas en PDF y no solo de JSON, reutilizando el motor del F-07.</p></article>
+          <article class="card rv"><span class="status">Propuesto</span><h4>CRM contable</h4><p>Registrar clientes y asociar a cada perfil los archivos JSON y Excel generados.</p></article>
+          <article class="card rv"><span class="status">Propuesto</span><h4>Acceso con roles</h4><p>Reemplazar la sesión en localStorage por JWT con administrador, contador y cliente.</p></article>
+        </div>
+      </section>
+
+      <!-- 8 -->
+      <section class="sec" id="contacto" aria-labelledby="t8">
+        <h2 id="t8"><i>8</i>Contacto</h2>
+        <p class="intro rv">Escribe a CreaPx para cotizar un sistema, revisar un módulo o resolver un problema de TI.</p>
+        <div class="contact">
+          <article class="card rv"><span class="ic"><i data-lucide="mail"></i></span><span class="label">Correo</span><span class="val" id="mailVal">creapxinnovacion@gmail.com</span><div class="row"><button class="btn" type="button" data-copy="creapxinnovacion@gmail.com" data-target="mailVal"><i data-lucide="copy"></i><span>Copiar correo</span></button></div></article>
+          <article class="card rv"><span class="ic"><i data-lucide="message-circle"></i></span><span class="label">WhatsApp</span><span class="val" id="waVal">+503 7756-2416</span><div class="row"><a class="btn primary" href="https://wa.me/50377562416" target="_blank" rel="noopener"><i data-lucide="arrow-up-right"></i><span>Abrir WhatsApp</span></a><button class="btn" type="button" data-copy="+503 7756-2416" data-target="waVal"><i data-lucide="copy"></i><span>Copiar número</span></button></div></article>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<footer class="foot">
+  <div class="wrap">
+    <a class="brand" href="#inicio"><svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><use href="#jr-mark"/></svg><span><b>Desarrollador JR</b><small>Junior Developer · CreaPx</small></span></a>
+    <span class="mono">SDD-JR-001 · v1.0 · 2026</span>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+<script>
+/* Datos de módulos, filtros, tema y copiado */
+(function(){
+  var MODS=[
+    {id:"MOD-01",icon:"receipt",name:"SVFE · Facturación Electrónica",cats:["Fiscal","Web","Móvil"],
+     prob:"Emitir, firmar y transmitir DTE a Hacienda con cálculo exacto y sin perder ventas cuando Hacienda no responde.",
+     dis:["Laravel 12 orquesta la emisión y calcula con BCMath. Un microservicio Spring Boot firma en JWS RS512.","Cubre DTE-01, 03, 05, 06, 11 y 14, además de invalidación con plazos legales y retornos de mercadería.","Contingencia con búfer local y transmisión por lotes. Correo automático con PDF y JSON firmado."],
+     tags:["Laravel 12","React 19","Vite 7","Dexie","Spring Boot","Jose4j","PostgreSQL","Flutter","Docker"]},
+    {id:"MOD-02",icon:"scan-line",name:"Libro de Compras F-07",cats:["Fiscal","Automatización","Web"],
+     prob:"Digitar más de 70 facturas de compra por lote para el Anexo 3 consume horas y rompe la cuadratura.",
+     dis:["La PWA toma la foto, la comprime en un Web Worker y la envía a la API.","FastAPI lee el QR del DTE, aplica OCR con PaddleOCR y valida IVA 13 % y exclusividad NIT o DUI.","Exporta un CSV de 21 columnas con punto y coma y sin encabezados para la DGII."],
+     tags:["React","Vite","PWA","FastAPI","Pydantic v2","PaddleOCR","OpenCV","Google Sheets"]},
+    {id:"MOD-03",icon:"stethoscope",name:"Sistema Médico",cats:["Web","Automatización"],
+     prob:"Expedientes, citas y recetas llevados a mano producen dobles reservas y documentos con errores.",
+     dis:["API REST en Node.js y Express con MVC modular. PostgreSQL en Neon y Google Sheets como libro de pacientes.","Regla en base de datos: un médico no tiene dos citas a la misma hora, y las citas vencidas pasan a PERDIDA.","Recetas en PDF estampadas sobre plantilla, con JWT, roles y límite de cambios de contraseña."],
+     tags:["Node.js","Express","PostgreSQL","Neon","JWT","Apps Script","Bootstrap 5","SweetAlert2"]},
+    {id:"MOD-04",icon:"package",name:"Control de Inventario de Botiquín",cats:["Web","Infraestructura"],
+     prob:"Medicinas vencidas y costos difíciles de conciliar en un botiquín.",
+     dis:["Motor dual: FEFO decide de qué lote sale la unidad y PEPS valora el costo contable.","Google Sheets como base en tiempo real mediante Apps Script, con auditoría de cada operación.","Imagen multi-etapa con Nginx, manifiestos Kustomize y CI en GitHub Actions."],
+     tags:["React","TypeScript","Vite","Apps Script","Google Sheets","Docker","Kubernetes","GitHub Actions"]},
+    {id:"MOD-05",icon:"mail-search",name:"Recolector de Facturas",cats:["Escritorio","Automatización"],
+     prob:"Horas perdidas bajando facturas PDF, JSON y XML desde la bandeja de correo.",
+     dis:["App PySide6 con hilos QThread que lee IMAP solo de remitentes autorizados y evita duplicados por Message-ID.","Licencia atada al hardware (BIOS, disco y MAC con SHA-256), validación cada 24 horas y gracia offline de 72 horas.","Modo headless con --collect para programar la descarga, y dashboard con cuentas por pagar."],
+     tags:["Python","PySide6","IMAP","PostgreSQL","Neon","Cryptography"]},
+    {id:"MOD-06",icon:"calculator",name:"P&G Contadores",cats:["Web","Automatización"],
+     prob:"Los contadores reciben JSON de compras y los pasan a Excel a mano.",
+     dis:["Arrastrar y soltar varios JSON y ver la tabla consolidada al instante.","Exportar a Excel con SheetJS, a CSV nativo o imprimir desde el navegador.","Sesión protegida en localStorage. Siguiente paso: JWT con roles."],
+     tags:["React 19","Vite","React Router 7","Tailwind CSS","SheetJS"]},
+    {id:"MOD-07",icon:"server",name:"API Agente Contable",cats:["Fiscal","Automatización"],
+     prob:"Procesar DTE de varios clientes en una misma plataforma sin degradar el rendimiento.",
+     dis:["Backend modular y multi-tenant con FastAPI y SQLAlchemy.","Autenticación JWT con contraseñas protegidas por Bcrypt.","PostgreSQL en Neon para producción y SQLite para desarrollo."],
+     tags:["FastAPI","Python","SQLAlchemy","PostgreSQL","Neon","JWT","SQLite"]},
+    {id:"MOD-08",icon:"truck",name:"Gas Flama",cats:["Móvil"],
+     prob:"Pedidos de cilindros de gas mal coordinados y sin ubicación en tiempo real.",
+     dis:["App Flutter para móvil y web con arquitectura BLoC y Cubit.","Mapa con OpenStreetMap y geolocalización en segundo plano.","WebSockets para el estado de los pedidos y JWT para las sesiones."],
+     tags:["Flutter","BLoC / Cubit","OpenStreetMap","WebSockets","Geolocator","JWT"]},
+    {id:"MOD-09",icon:"globe",name:"Sitio web de CreaPx",cats:["Web"],
+     prob:"Presentar servicios, soluciones por rubro y portafolio, y convertir visitas en cotizaciones.",
+     dis:["SPA con React 19 y Router: inicio, servicios, soluciones, portafolio, tecnología y contacto.","Formulario validado con EmailJS y botón flotante directo a WhatsApp.","Vistas de página con Google Analytics 4 y navbar adaptable a móvil."],
+     tags:["React 19","Vite","Tailwind CSS","React Router","Lucide","EmailJS"]},
+    {id:"MOD-10",icon:"wrench",name:"Mantenimiento de Computadoras",cats:["Infraestructura"],
+     prob:"Equipos lentos, con polvo acumulado y sobrecalentamiento.",
+     dis:["Diagnóstico de componentes y limpieza física profunda.","Cambio de pasta térmica y optimización del sistema operativo.","Galería de fotos del antes y el después en el portafolio."],
+     tags:["Diagnóstico","Pasta térmica","Optimización de SO","Mantenimiento preventivo"]}
+  ];
+  var FILTERS=["Todos","Fiscal","Web","Móvil","Escritorio","Automatización","Infraestructura"];
+  function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+  var grid=document.getElementById("mods");
+  grid.innerHTML=MODS.map(function(m){
+    return '<article class="mod rv" data-cats="'+esc(m.cats.join("|"))+'">'+
+      '<header><span class="mid">'+m.id+'</span><span class="badges">'+m.cats.map(function(c){return '<span class="badge">'+esc(c)+'</span>'}).join("")+'</span></header>'+
+      '<div class="mt"><span class="ic"><i data-lucide="'+m.icon+'"></i></span><h3>'+esc(m.name)+'</h3></div>'+
+      '<dl><div><dt>Problema</dt><dd>'+esc(m.prob)+'</dd></div>'+
+      '<div><dt>Decisiones de diseño</dt><dd><ul>'+m.dis.map(function(d){return '<li><span>'+esc(d)+'</span></li>'}).join("")+'</ul></dd></div></dl>'+
+      '<ul class="tags">'+m.tags.map(function(t){return '<li>'+esc(t)+'</li>'}).join("")+'</ul></article>';
+  }).join("");
+
+  var fbox=document.getElementById("filters"), count=document.getElementById("count");
+  fbox.innerHTML=FILTERS.map(function(f,i){return '<button type="button" class="fchip" data-f="'+f+'" aria-pressed="'+(i===0)+'">'+f+'</button>'}).join("");
+  function applyFilter(f,animate){
+    var shown=0, cards=grid.querySelectorAll(".mod");
+    cards.forEach(function(c){
+      var ok=f==="Todos"||c.getAttribute("data-cats").split("|").indexOf(f)>-1;
+      c.hidden=!ok; if(ok) shown++;
+    });
+    count.textContent="Mostrando "+shown+" de "+cards.length+" módulos";
+    fbox.querySelectorAll(".fchip").forEach(function(b){b.setAttribute("aria-pressed",String(b.getAttribute("data-f")===f))});
+    if(animate && window.anime && !matchMedia("(prefers-reduced-motion: reduce)").matches){
+      anime({targets:grid.querySelectorAll(".mod:not([hidden])"),translateY:[14,0],opacity:[.4,1],duration:420,delay:anime.stagger(50),easing:"easeOutCubic"});
+    }
+  }
+  fbox.addEventListener("click",function(e){var b=e.target.closest(".fchip"); if(b) applyFilter(b.getAttribute("data-f"),true)});
+  applyFilter("Todos",false);
+
+  /* Tema */
+  var root=document.documentElement;
+  try{var saved=localStorage.getItem("jr-theme"); if(saved==="dark"||saved==="light") root.setAttribute("data-theme",saved)}catch(e){}
+  function eff(){var t=root.getAttribute("data-theme"); if(t) return t; return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}
+  document.getElementById("themeBtn").addEventListener("click",function(){
+    var n=eff()==="dark"?"light":"dark"; root.setAttribute("data-theme",n);
+    try{localStorage.setItem("jr-theme",n)}catch(e){}
+  });
+
+  /* Copiar */
+  function selectText(id){var el=document.getElementById(id); if(!el) return; var r=document.createRange(); r.selectNodeContents(el); var s=getSelection(); s.removeAllRanges(); s.addRange(r)}
+  document.querySelectorAll("[data-copy]").forEach(function(b){
+    var label=b.querySelector("span"), orig=label.textContent;
+    function flash(t){label.textContent=t; setTimeout(function(){label.textContent=orig},1800)}
+    b.addEventListener("click",function(){
+      var text=b.getAttribute("data-copy"), target=b.getAttribute("data-target");
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text).then(function(){flash("Copiado")},function(){selectText(target);flash("Seleccionado")});
+      }else{selectText(target);flash("Seleccionado")}
+    });
+  });
+
+  if(window.lucide){try{lucide.createIcons()}catch(e){}}
+})();
+</script>
+<script>
+/* Efectos: parallax, anime.js, scrollspy */
+(function(){
+  var reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* Scrollspy (siempre activo) */
+  var links={}; document.querySelectorAll("#toc a").forEach(function(a){links[a.getAttribute("href").slice(1)]=a});
+  if("IntersectionObserver" in window){
+    var spy=new IntersectionObserver(function(es){
+      es.forEach(function(en){
+        if(en.isIntersecting){
+          Object.keys(links).forEach(function(k){links[k].classList.toggle("on",k===en.target.id)});
+        }
+      });
+    },{rootMargin:"-25% 0px -65% 0px"});
+    document.querySelectorAll(".sec").forEach(function(s){spy.observe(s)});
+  }
+  if(reduce||!window.anime) return;
+
+  /* Entrada de portada */
+  anime({targets:".hero .rise",translateY:[16,0],opacity:[.25,1],duration:800,delay:anime.stagger(90),easing:"easeOutCubic"});
+  anime({targets:".stage .chipbox",scale:[.88,1],opacity:[.2,1],duration:700,delay:anime.stagger(120,{start:300}),easing:"easeOutBack"});
+  anime({targets:".bigmark",scale:[.9,1],duration:900,easing:"easeOutElastic(1,.7)"});
+
+  /* Anillo del plano girando lento */
+  anime({targets:"#ring",rotate:360,duration:70000,easing:"linear",loop:true});
+
+  /* Chips flotando (el wrapper recibe el parallax, el chip interno flota) */
+  document.querySelectorAll(".bob").forEach(function(el,i){
+    anime({targets:el,translateY:[-4,5],duration:2600+i*450,direction:"alternate",loop:true,easing:"easeInOutSine"});
+  });
+
+  /* Líneas de flujo entre capas */
+  anime({targets:".flow line",strokeDashoffset:[0,-20],duration:1300,easing:"linear",loop:true});
+
+  /* Contadores */
+  document.querySelectorAll("[data-count]").forEach(function(el){
+    var n=+el.getAttribute("data-count"), o={v:0};
+    anime({targets:o,v:n,round:1,duration:1400,delay:500,easing:"easeOutExpo",update:function(){el.textContent=o.v}});
+  });
+
+  /* Parallax: puntero y scroll sobre la ventana de la portada */
+  var stage=document.getElementById("stage"), layers=[].slice.call(stage.querySelectorAll("[data-depth]"));
+  var mx=0,my=0,pending=false;
+  function paint(){
+    pending=false;
+    var r=stage.getBoundingClientRect(), off=(r.top+r.height/2-innerHeight/2)/innerHeight;
+    layers.forEach(function(el){
+      var d=parseFloat(el.getAttribute("data-depth"));
+      el.style.transform="translate3d("+(mx*d*16).toFixed(1)+"px,"+(my*d*16-off*d*46).toFixed(1)+"px,0)";
+    });
+  }
+  function req(){if(!pending){pending=true;requestAnimationFrame(paint)}}
+  stage.addEventListener("pointermove",function(e){
+    var r=stage.getBoundingClientRect(); mx=(e.clientX-r.left)/r.width-.5; my=(e.clientY-r.top)/r.height-.5; req();
+  });
+  stage.addEventListener("pointerleave",function(){mx=0;my=0;req()});
+  addEventListener("scroll",req,{passive:true});
+  addEventListener("resize",req);
+  paint();
+
+  /* Revelado al hacer scroll: solo desplazamiento, el contenido ya es visible */
+  if("IntersectionObserver" in window){
+    var below=[].slice.call(document.querySelectorAll(".rv")).filter(function(el){return el.getBoundingClientRect().top>innerHeight});
+    below.forEach(function(el){el.style.transform="translateY(18px)"});
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(en){
+        if(en.isIntersecting){
+          io.unobserve(en.target);
+          anime({targets:en.target,translateY:[18,0],duration:650,easing:"easeOutCubic",complete:function(){en.target.style.transform=""}});
+        }
+      });
+    },{rootMargin:"0px 0px -6% 0px"});
+    below.forEach(function(el){io.observe(el)});
+  }
+})();
+</script>
+
+</body></html>
