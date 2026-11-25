@@ -8,6 +8,13 @@ import { CONTACT_INFO, SERVICES_DATA, CASE_STUDIES_DATA, FOUNDER_DATA, TEAM_MEMB
 export default function Home() {
   return (
     <div className="w-full flex flex-col bg-[#08101E] text-[#EBF1FA]">
+      {/* React 19 Native Head Hoisting */}
+      <title>Desarrollador JR · Facturación DTE y Software a Medida · El Salvador</title>
+      <meta name="description" content="Software que emite DTE ante Ministerio de Hacienda, controla inventarios y automatiza tu empresa. Respaldado por Cristian Cajul y equipo en El Salvador." />
+      <link rel="canonical" href="https://desarrolladorjr.com/" />
+      <meta property="og:title" content="Desarrollador JR · Facturación DTE y Software a Medida El Salvador" />
+      <meta property="og:url" content="https://desarrolladorjr.com/" />
+
       {/* ================= HERO ORIENTADO A CLIENTES (v2.1) ================= */}
       <section className="relative min-h-[85vh] w-full bg-[#08101E] bg-blueprint-grid flex flex-col items-center justify-center px-4 sm:px-6 py-16 md:py-24 border-b border-[#203350] overflow-hidden">
         {/* Glows decorativos */}

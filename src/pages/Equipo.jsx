@@ -7,6 +7,13 @@ import { FOUNDER_DATA, TEAM_MEMBERS, CONTACT_INFO } from "../data/modulesData";
 export default function Equipo() {
   return (
     <div className="w-full min-h-screen bg-[#08101E] text-[#EBF1FA] px-4 sm:px-6 py-14">
+      {/* React 19 Native Head Hoisting */}
+      <title>Equipo Técnico & Fundador · Cristian Cajul · Desarrollador JR</title>
+      <meta name="description" content="Conoce a Cristian Cajul y al equipo multidisciplinario detrás de Desarrollador JR: software, soporte corporativo, redes e infraestructura en El Salvador." />
+      <link rel="canonical" href="https://desarrolladorjr.com/equipo" />
+      <meta property="og:title" content="Equipo Técnico & Fundador · Desarrollador JR" />
+      <meta property="og:url" content="https://desarrolladorjr.com/equipo" />
+
       <div className="max-w-6xl mx-auto space-y-20">
         {/* ================= HEADER DEL EQUIPO ================= */}
         <section className="text-center max-w-3xl mx-auto space-y-4">

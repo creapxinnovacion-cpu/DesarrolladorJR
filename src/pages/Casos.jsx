@@ -6,6 +6,13 @@ import { CASE_STUDIES_DATA, CONTACT_INFO } from "../data/modulesData";
 export default function Casos() {
   return (
     <div className="w-full min-h-screen bg-[#08101E] text-[#EBF1FA] px-4 sm:px-6 py-14">
+      {/* React 19 Native Head Hoisting */}
+      <title>Casos de Éxito · Proyectos Implementados · Desarrollador JR</title>
+      <meta name="description" content="Casos reales de ingeniería implementados en El Salvador: contingencia DTE offline, infraestructura de telecomunicaciones escolar y control de inventarios FEFO/PEPS." />
+      <link rel="canonical" href="https://desarrolladorjr.com/casos" />
+      <meta property="og:title" content="Casos de Éxito · Proyectos de Ingeniería · Desarrollador JR" />
+      <meta property="og:url" content="https://desarrolladorjr.com/casos" />
+
       <div className="max-w-6xl mx-auto space-y-16">
         {/* HEADER DE CASOS DE ÉXITO */}
         <section className="text-center max-w-3xl mx-auto space-y-4">

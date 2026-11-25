@@ -52,21 +52,24 @@ export default function Contacto() {
 
     if (!validateForm()) return;
 
-    // Disparo de analítica GA4
+    // Disparo seguro de analítica GA4
     if (typeof window.gtag === "function") {
-      window.gtag("event", "generate_lead", {
-        event_category: "Contacto",
-        event_label: formData.tipoProyecto,
-      });
+      try {
+        window.gtag("event", "generate_lead", {
+          event_category: "Contacto",
+          event_label: formData.tipoProyecto,
+        });
+      } catch (err) {
+        console.warn("Analytics event error:", err);
+      }
     }
 
     const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
     const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
     const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-    // Si no está configurado EmailJS en entorno local, redirección fluida a WhatsApp
+    // Si no está configurado EmailJS en entorno local, redirección fluida a WhatsApp y confirmación visual
     if (!serviceId || !templateId || !publicKey) {
-      console.warn("EmailJS no configurado en este entorno. Conectando con WhatsApp directamente.");
       const waMsg = `Hola Cristian y equipo de Desarrollador JR, soy ${formData.nombre} (${formData.contacto}). Me interesa cotizar: "${formData.tipoProyecto}". Detalle: ${formData.mensaje}`;
       window.open(`${CONTACT_INFO.whatsappLink}?text=${encodeURIComponent(waMsg)}`, "_blank");
       setSuccess(true);
@@ -97,12 +100,20 @@ export default function Contacto() {
         console.error(err);
         const waFallback = `Hola Cristian, intenté enviar un mensaje desde la web: soy ${formData.nombre} (${formData.contacto}). Proyecto: "${formData.tipoProyecto}". Mensaje: ${formData.mensaje}`;
         window.open(`${CONTACT_INFO.whatsappLink}?text=${encodeURIComponent(waFallback)}`, "_blank");
+        setSuccess(true);
       })
       .finally(() => setIsSending(false));
   };
 
   return (
     <div className="w-full min-h-screen bg-[#08101E] text-[#EBF1FA] px-4 sm:px-6 py-14">
+      {/* React 19 Native Head Hoisting */}
+      <title>Contacto & Cotización · Cuéntanos tu Proyecto · Desarrollador JR</title>
+      <meta name="description" content="Solicita cotización de Facturación Electrónica DTE homologada con Hacienda, desarrollo de software a la medida o automatizaciones en El Salvador." />
+      <link rel="canonical" href="https://desarrolladorjr.com/contacto" />
+      <meta property="og:title" content="Contacto & Cotización · Desarrollador JR" />
+      <meta property="og:url" content="https://desarrolladorjr.com/contacto" />
+
       <div className="max-w-4xl mx-auto space-y-12">
         {/* HEADER */}
         <section className="text-center max-w-2xl mx-auto space-y-3">

@@ -51,16 +51,16 @@ export const SERVICES_DATA = [
   {
     id: "SRV-03",
     icon: "autorenew",
-    title: "Automatización & Telecomunicaciones",
-    subtitle: "Procesos que se ejecutan solos y redes físicas de alto desempeño",
-    description: "Elimina tareas manuales repetitivas y asegura la conectividad física de tu oficina o sucursal. Desde digitalización inteligente con OCR de documentos hasta cableado estructurado certificado, montaje de racks y enlaces Wi-Fi.",
+    title: "Automatización de Procesos & Integraciones",
+    subtitle: "Flujos de trabajo, recordatorios, cotizaciones y sincronización que se ejecutan solos",
+    description: "Elimina tareas manuales repetitivas y conecta tus sistemas. Desde flujos automáticos de facturas y digitalización OCR, hasta scripts de sincronización de inventario, pasarelas de pago y alertas por WhatsApp o correo.",
     benefits: [
-      "Digitalización OCR de facturas y documentos físicos con extracción automática de datos.",
-      "Redes estructuradas Cat6, montaje de gabinetes de comunicaciones y switches administrables.",
-      "Sistemas de respaldo eléctrico ininterrumpido (UPS) para evitar apagones de servidores.",
-      "Soporte preventivo presencial y mantenimiento de hardware con diagnóstico a nivel de componente."
+      "Sincronización automática de inventario y pedidos entre múltiples sucursales o puntos de venta.",
+      "Digitalización inteligente con OCR para extraer datos de facturas físicas y documentos.",
+      "Generación y envío automático de cotizaciones y recordatorios de cobro a clientes.",
+      "Integración de APIs y webhooks entre sistemas contables, ERPs y bases de datos PostgreSQL."
     ],
-    tags: ["OCR Inteligente", "Cableado Cat6 TIA/EIA", "Racks Nexxt", "Wi-Fi Huawei", "Soporte IT"],
+    tags: ["Automatización", "Webhooks & APIs", "OCR Documentos", "ETL", "Sincronización"],
     badge: "Eficiencia Operativa",
     popular: false
   }
@@ -69,6 +69,7 @@ export const SERVICES_DATA = [
 // ==========================================
 // CASOS DE ÉXITO COMERCIALES (v2.1)
 // Problema · Solución · Tecnología · Resultado
+// Datos técnicos reales y confidencialidad protegida (Sección 14 SDD)
 // ==========================================
 export const CASE_STUDIES_DATA = [
   {
@@ -82,27 +83,27 @@ export const CASE_STUDIES_DATA = [
     tech: ["FastAPI", "Python Cryptography", "JWS RS512", "React 19", "PostgreSQL"],
     results: [
       "100% de cumplimiento tributario ante Ministerio de Hacienda.",
-      "Cero ventas perdidas por interrupciones de internet gracias a la cola offline.",
-      "Emisión y recepción de sello de recepción en menos de 1.8 segundos por comprobante."
+      "Cero ventas perdidas por caídas de internet gracias a la cola offline sincronizada.",
+      "Sello de recepción tributario emitido y almacenado de forma automática."
     ],
-    metric: "0% Ventas Perdidas",
+    metric: "0 Ventas Perdidas",
     metricLabel: "por caídas de internet",
-    image: "/brand/facebook-post-presentacion-1080x1350.png",
+    image: "/brand/imagen-compartir-og-1200x630.png",
     icon: "receipt_long"
   },
   {
     id: "CASO-02",
-    slug: "infraestructura-redes-centro-escolar-tacuba",
+    slug: "infraestructura-redes-conectividad-educativa",
     title: "Cableado Estructurado y Red Wi-Fi Institucional",
-    client: "Centro Escolar Caserío El Milagro · Tacuba, Ahuachapán (MINED)",
-    industry: "Educación & Gobierno",
-    problem: "Carencia de conectividad de red confiable en aulas y dirección, cables expuestos a la intemperie y caídas constantes de señal que impedían el uso de computadoras escolares.",
-    solution: "Instalación completa de infraestructura de red: canalización aérea en cerchas industriales con ducto corrugado azul, doble gabinete mural de 19\" Nexxt Solutions, patch panels rotulados ANSI/TIA-606-B, enlaces de fibra óptica y Access Points Huawei PoE.",
-    tech: ["UTP Cat6 Nexxt", "Huawei Enterprise AP", "Fibra Óptica", "Forza UPS", "TIA/EIA-568-C"],
+    client: "Sector Educativo Público · Complejo Escolar de Occidente (Ahuachapán)",
+    industry: "Educación & Infraestructura",
+    problem: "Carencia de conectividad de red confiable en aulas y dirección, cables expuestos a la intemperie y caídas constantes de señal que impedían el aprovechamiento de equipos informáticos.",
+    solution: "Diseño e instalación completa de infraestructura de red: canalización aérea en cerchas industriales con ducto corrugado, doble gabinete mural de 19\" Nexxt Solutions, patch panels rotulados bajo norma ANSI/TIA-606-B, enlaces de fibra óptica y Access Points empresariales PoE.",
+    tech: ["UTP Cat6 Nexxt", "Enterprise AP PoE", "Fibra Óptica", "Forza UPS", "TIA/EIA-568-C"],
     results: [
-      "Cobertura Wi-Fi de alta densidad en el 100% de las aulas y áreas comunes.",
-      "0% de pérdida de paquetes en pruebas de certificación con analizador digital de red.",
-      "Protección eléctrica ininterrumpida contra picos y cortes de energía."
+      "Cobertura Wi-Fi total en el 100% de las aulas y áreas administrativas.",
+      "Cero pérdida de paquetes en pruebas de certificación física con analizador digital de red.",
+      "Protección eléctrica ininterrumpida con UPS para switches y fibra ante variaciones de voltaje."
     ],
     metric: "100% Cobertura",
     metricLabel: "certificada en aulas",
@@ -116,15 +117,15 @@ export const CASE_STUDIES_DATA = [
     client: "Cadena de Distribución Farmacéutica y Almacén Central",
     industry: "Salud & Distribución",
     problem: "Pérdidas económicas por medicamentos vencidos en bodega debido a falta de trazabilidad de lotes y despacho desordenado en almacén.",
-    solution: "Plataforma de inventario con algoritmo dual FEFO (First-Expired, First-Out) y PEPS. Alertas automáticas 60, 30 y 15 días antes de vencimiento, bloqueo de lotes comprometidos e impresión de etiquetas con código de barras.",
-    tech: ["PostgreSQL Neon", "Python", "React", "Docker", "Tailwind CSS"],
+    solution: "Plataforma de inventario con algoritmo dual FEFO (First-Expired, First-Out) y PEPS. Alertas preventivas automáticas antes de vencimiento, bloqueo de lotes comprometidos e impresión de etiquetas con código de barras.",
+    tech: ["PostgreSQL", "Python", "React", "Docker", "Tailwind CSS"],
     results: [
-      "Reducción del 92% en mermas por vencimiento de productos en los primeros 3 meses.",
-      "Trazabilidad completa de origen a destino por número de lote en auditorías de salud.",
-      "Aceleración de tiempos de empaque y despacho en un 40%."
+      "Eliminación de despachos de productos caducados mediante despacho guiado FEFO.",
+      "Trazabilidad completa de origen a destino por número de lote en auditorías.",
+      "Disminución drástica de tiempos de preparación de pedidos y arqueos de almacén."
     ],
-    metric: "-92% Mermas",
-    metricLabel: "por caducidad de lotes",
+    metric: "Trazabilidad Total",
+    metricLabel: "por lote y fecha de expiración",
     image: "/evidence/hardware-ssd-nvme-m2-alta-velocidad.jpg",
     icon: "inventory_2"
   }

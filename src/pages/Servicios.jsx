@@ -6,6 +6,13 @@ import { SERVICES_DATA, CONTACT_INFO } from "../data/modulesData";
 export default function Servicios() {
   return (
     <div className="w-full min-h-screen bg-[#08101E] text-[#EBF1FA] px-4 sm:px-6 py-14">
+      {/* React 19 Native Head Hoisting */}
+      <title>Servicios · Facturación DTE, Software a Medida y Automatización · Desarrollador JR</title>
+      <meta name="description" content="Servicios especializados en Facturación Electrónica DTE Ministerio de Hacienda, sistemas a la medida y automatización de procesos para empresas en El Salvador." />
+      <link rel="canonical" href="https://desarrolladorjr.com/servicios" />
+      <meta property="og:title" content="Servicios de Software & Facturación DTE · Desarrollador JR" />
+      <meta property="og:url" content="https://desarrolladorjr.com/servicios" />
+
       <div className="max-w-6xl mx-auto space-y-16">
         {/* HEADER DE SERVICIOS */}
         <section className="text-center max-w-3xl mx-auto space-y-4">

@@ -17,6 +17,13 @@ export default function Ingenieria() {
 
   return (
     <div className="w-full min-h-screen bg-[#08101E] text-[#EBF1FA] px-4 sm:px-6 py-14">
+      {/* React 19 Native Head Hoisting */}
+      <title>Centro de Ingeniería · Arquitectura, Módulos y Calidad · Desarrollador JR</title>
+      <meta name="description" content="Especificación técnica profunda de Desarrollador JR: arquitectura hexagonal, 10 módulos de software, stack tecnológico y matriz de calidad." />
+      <link rel="canonical" href="https://desarrolladorjr.com/ingenieria" />
+      <meta property="og:title" content="Centro de Ingeniería de Software · Desarrollador JR" />
+      <meta property="og:url" content="https://desarrolladorjr.com/ingenieria" />
+
       <div className="max-w-6xl mx-auto space-y-14">
         {/* HEADER DE INGENIERÍA */}
         <section className="text-center max-w-3xl mx-auto space-y-4">
