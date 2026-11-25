@@ -18,18 +18,16 @@ export function WhatsAppIcon({ className = "w-5 h-5", size = 20 }) {
 export default function FloatingWhatsApp() {
   return (
     <a
-      href={`${CONTACT_INFO.whatsappLink}?text=Hola,%20quisiera%20consultar%20sobre%20un%20proyecto%20con%20Desarrollador%20JR.`}
+      href={`${CONTACT_INFO.whatsappLink}?text=Hola%20Cristian,%20quisiera%20consultar%20sobre%20un%20proyecto%20con%20Desarrollador%20JR.`}
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 z-50 group flex items-center gap-2.5 px-4 py-3 sm:px-5 sm:py-3.5 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-slate-950 font-bold font-mono text-xs sm:text-sm tracking-wide shadow-[0_8px_25px_rgba(37,211,102,0.4)] hover:shadow-[0_12px_32px_rgba(37,211,102,0.6)] transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 active:scale-95 border-2 border-[#08101E]"
-      aria-label="Contactar por WhatsApp"
+      aria-label="Contactar a Cristian Cajul por WhatsApp"
+      className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-50 group flex items-center justify-center p-3 sm:px-4 sm:py-2.5 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-slate-950 font-sans font-bold shadow-[0_6px_20px_rgba(37,211,102,0.4)] hover:shadow-[0_8px_25px_rgba(37,211,102,0.6)] transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 active:scale-95 border-2 border-[#08101E] focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#08101E]"
     >
-      <span className="relative flex h-3 w-3">
-        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-slate-950 opacity-30"></span>
-        <span className="relative inline-flex rounded-full h-3 w-3 bg-slate-950"></span>
+      <WhatsAppIcon className="w-6 h-6 sm:w-5 sm:h-5 fill-slate-950" size={24} />
+      <span className="hidden sm:inline-block ml-2 text-xs uppercase tracking-wider font-extrabold text-slate-950">
+        WhatsApp
       </span>
-      <WhatsAppIcon className="w-5 h-5 fill-slate-950" size={22} />
-      <span className="font-extrabold uppercase tracking-wider">WhatsApp</span>
     </a>
   );
 }

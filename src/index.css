@@ -27,16 +27,18 @@ html, body, #root {
   width: 100%;
   min-height: 100%;
   margin: 0;
+  padding: 0;
   font-family: var(--font-sans);
   background-color: #08101E;
   color: #EBF1FA;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.008em;
 }
 
 code, pre, .mono {

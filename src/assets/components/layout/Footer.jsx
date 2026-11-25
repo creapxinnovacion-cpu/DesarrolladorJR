@@ -23,33 +23,33 @@ export default function Footer() {
         </div>
 
         {/* ENLACES RÁPIDOS Y BOTÓN DE WHATSAPP ELEGANTE */}
-        <div className="flex flex-wrap items-center justify-center md:justify-end gap-3 sm:gap-4 text-xs font-mono">
-          <Link to="/perfil" className="hover:text-[#5F90FF] transition">
+        <div className="flex flex-wrap items-center justify-center md:justify-end gap-3 sm:gap-4 text-xs font-sans font-medium">
+          <Link to="/perfil" className="text-slate-300 hover:text-[#5F90FF] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5F90FF] rounded px-1">
             Perfil
           </Link>
-          <Link to="/equipo" className="hover:text-[#5F90FF] transition text-[#FFC633]">
+          <Link to="/equipo" className="text-[#FFC633] hover:text-amber-300 transition font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFC633] rounded px-1">
             Equipo (6)
           </Link>
-          <Link to="/arquitectura" className="hover:text-[#5F90FF] transition">
+          <Link to="/arquitectura" className="text-slate-300 hover:text-[#5F90FF] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5F90FF] rounded px-1">
             Arquitectura
           </Link>
-          <Link to="/modulos" className="hover:text-[#5F90FF] transition">
-            Módulos (10)
+          <Link to="/modulos" className="text-slate-300 hover:text-[#5F90FF] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5F90FF] rounded px-1">
+            Módulos
           </Link>
-          <Link to="/tecnologia" className="hover:text-[#5F90FF] transition">
+          <Link to="/tecnologia" className="text-slate-300 hover:text-[#5F90FF] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5F90FF] rounded px-1">
             Tecnología
           </Link>
-          <Link to="/calidad" className="hover:text-[#5F90FF] transition">
+          <Link to="/calidad" className="text-slate-300 hover:text-[#5F90FF] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5F90FF] rounded px-1">
             Calidad
           </Link>
-          <Link to="/evidencia" className="hover:text-[#5F90FF] transition text-[#5F90FF]">
+          <Link to="/evidencia" className="text-[#5F90FF] hover:text-sky-300 transition font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5F90FF] rounded px-1">
             Evidencia
           </Link>
           <a
             href={CONTACT_INFO.whatsappLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-slate-950 font-bold font-mono text-xs shadow-md shadow-emerald-500/20 hover:shadow-emerald-500/40 transition-all transform hover:-translate-y-0.5 active:scale-95"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-slate-950 font-bold font-sans text-xs shadow-md shadow-emerald-500/20 hover:shadow-emerald-500/40 transition-all transform hover:-translate-y-0.5 active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
             aria-label="Abrir WhatsApp oficial"
           >
             <WhatsAppIcon size={15} className="fill-slate-950" />

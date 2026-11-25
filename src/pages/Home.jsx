@@ -17,18 +17,22 @@ export default function Home() {
         <div className="absolute bottom-10 right-10 w-[300px] h-[300px] bg-[#FFC633]/10 rounded-full blur-[120px] pointer-events-none" />
 
         <div className="relative z-10 max-w-5xl mx-auto flex flex-col items-center text-center">
-          {/* LOGO OFICIAL */}
+          {/* LOGO OFICIAL DEL HERO */}
           <div className="mb-6">
             <img
               src={logoHorizontal}
-              alt="Desarrollador JR"
-              className="h-20 sm:h-24 md:h-28 w-auto object-contain drop-shadow-[0_10px_25px_rgba(10,84,250,0.35)]"
+              alt="Desarrollador JR - Desarrollo y Automatización"
+              className="h-14 sm:h-18 md:h-22 w-auto object-contain drop-shadow-[0_10px_25px_rgba(10,84,250,0.35)]"
+              loading="eager"
             />
           </div>
 
-          <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-6 max-w-4xl leading-[1.1]">
+          <h1
+            style={{ textWrap: "balance" }}
+            className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-normal mb-6 max-w-4xl mx-auto leading-[1.18] text-white"
+          >
             Ingeniería de Software,{" "}
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#5F90FF] via-sky-300 to-[#FFC633]">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#5F90FF] via-sky-400 to-[#38BDF8]">
               Facturación DTE
             </span>{" "}
             y Sistemas de Alto Desempeño
