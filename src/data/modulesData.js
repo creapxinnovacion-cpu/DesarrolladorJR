@@ -5,11 +5,130 @@ export const CONTACT_INFO = {
   whatsappLink: "https://wa.me/50370352834",
   email: "creapxinnovacion@gmail.com",
   location: "El Salvador",
-  documentCode: "SDD-JR-001",
-  version: "2.0 (Producción)",
+  documentCode: "SDD-JR-002",
+  version: "v2.1 (Producción)",
   role: "Desarrollador JR / Software Engineer & Founder",
   company: "CreaPx"
 };
+
+// ==========================================
+// CATÁLOGO DE SERVICIOS COMERCIALES (v2.1)
+// Orientado a clientes y tomadores de decisión
+// ==========================================
+export const SERVICES_DATA = [
+  {
+    id: "SRV-01",
+    icon: "receipt_long",
+    title: "Facturación Electrónica DTE",
+    subtitle: "Emisión y control tributario homologado con el Ministerio de Hacienda",
+    description: "Implementamos e integramos la facturación electrónica obligatoria para tu empresa. Generación de JSON firmados criptográficamente (JWS RS512), transmisión a Hacienda, control de contingencias offline y representación gráfica con código QR.",
+    benefits: [
+      "Soporte oficial para DTE 01 (Factura), DTE 03 (Crédito Fiscal), DTE 05 (Nota de Crédito) y DTE 14 (Sujeto Excluido).",
+      "Firma digital automática con llaves privadas y certificados del Ministerio de Hacienda.",
+      "Modo contingencia automático en caídas de red o demoras de respuesta gubernamental.",
+      "Envío directo por correo y WhatsApp del documento tributario al cliente final."
+    ],
+    tags: ["JWS RS512", "Hacienda El Salvador", "DTE 01/03/05/14", "QR Tributario", "Contingencia"],
+    badge: "Alta Demanda Legal",
+    popular: true
+  },
+  {
+    id: "SRV-02",
+    icon: "code",
+    title: "Sistemas de Software a la Medida",
+    subtitle: "Ventas, inventario, clientes y operaciones adaptadas a tu flujo de negocio",
+    description: "Desarrollamos aplicaciones web, móviles y de escritorio pensadas exactamente para la forma en que opera tu empresa. Evita software rígido que cobra licencias mensuales abusivas y obtén una solución propia, escalable y rápida.",
+    benefits: [
+      "Inventarios con control de lotes y motor dual FEFO / PEPS para control estricto de mermas y caducidades.",
+      "Puntos de venta (POS) rápidos con sincronización local y en la nube.",
+      "Módulos administrativos, cuentas por cobrar y reportes ejecutivos automatizados.",
+      "Bases de datos seguras en PostgreSQL con respaldos automáticos continuos."
+    ],
+    tags: ["FastAPI", "React", "PostgreSQL", "Flutter", "Sistemas a la Medida"],
+    badge: "100% Personalizado",
+    popular: false
+  },
+  {
+    id: "SRV-03",
+    icon: "autorenew",
+    title: "Automatización & Telecomunicaciones",
+    subtitle: "Procesos que se ejecutan solos y redes físicas de alto desempeño",
+    description: "Elimina tareas manuales repetitivas y asegura la conectividad física de tu oficina o sucursal. Desde digitalización inteligente con OCR de documentos hasta cableado estructurado certificado, montaje de racks y enlaces Wi-Fi.",
+    benefits: [
+      "Digitalización OCR de facturas y documentos físicos con extracción automática de datos.",
+      "Redes estructuradas Cat6, montaje de gabinetes de comunicaciones y switches administrables.",
+      "Sistemas de respaldo eléctrico ininterrumpido (UPS) para evitar apagones de servidores.",
+      "Soporte preventivo presencial y mantenimiento de hardware con diagnóstico a nivel de componente."
+    ],
+    tags: ["OCR Inteligente", "Cableado Cat6 TIA/EIA", "Racks Nexxt", "Wi-Fi Huawei", "Soporte IT"],
+    badge: "Eficiencia Operativa",
+    popular: false
+  }
+];
+
+// ==========================================
+// CASOS DE ÉXITO COMERCIALES (v2.1)
+// Problema · Solución · Tecnología · Resultado
+// ==========================================
+export const CASE_STUDIES_DATA = [
+  {
+    id: "CASO-01",
+    slug: "facturacion-electronica-dte-el-salvador",
+    title: "Sistema de Facturación DTE con Contingencia Offline",
+    client: "Comercio Mayorista y Distribución · San Salvador",
+    industry: "Comercio & Retail",
+    problem: "Obligatoriedad de emitir Facturas y Créditos Fiscales DTE según mandato del Ministerio de Hacienda, con alto riesgo de multas y pérdida de ventas durante cortes de internet.",
+    solution: "Desarrollo de microservicio en FastAPI y React con motor de firma criptográfica JWS RS512. Se incorporó una cola local SQLite de contingencia que almacena ventas offline y las transmite automáticamente a Hacienda al restaurarse la conexión.",
+    tech: ["FastAPI", "Python Cryptography", "JWS RS512", "React 19", "PostgreSQL"],
+    results: [
+      "100% de cumplimiento tributario ante Ministerio de Hacienda.",
+      "Cero ventas perdidas por interrupciones de internet gracias a la cola offline.",
+      "Emisión y recepción de sello de recepción en menos de 1.8 segundos por comprobante."
+    ],
+    metric: "0% Ventas Perdidas",
+    metricLabel: "por caídas de internet",
+    image: "/brand/facebook-post-presentacion-1080x1350.png",
+    icon: "receipt_long"
+  },
+  {
+    id: "CASO-02",
+    slug: "infraestructura-redes-centro-escolar-tacuba",
+    title: "Cableado Estructurado y Red Wi-Fi Institucional",
+    client: "Centro Escolar Caserío El Milagro · Tacuba, Ahuachapán (MINED)",
+    industry: "Educación & Gobierno",
+    problem: "Carencia de conectividad de red confiable en aulas y dirección, cables expuestos a la intemperie y caídas constantes de señal que impedían el uso de computadoras escolares.",
+    solution: "Instalación completa de infraestructura de red: canalización aérea en cerchas industriales con ducto corrugado azul, doble gabinete mural de 19\" Nexxt Solutions, patch panels rotulados ANSI/TIA-606-B, enlaces de fibra óptica y Access Points Huawei PoE.",
+    tech: ["UTP Cat6 Nexxt", "Huawei Enterprise AP", "Fibra Óptica", "Forza UPS", "TIA/EIA-568-C"],
+    results: [
+      "Cobertura Wi-Fi de alta densidad en el 100% de las aulas y áreas comunes.",
+      "0% de pérdida de paquetes en pruebas de certificación con analizador digital de red.",
+      "Protección eléctrica ininterrumpida contra picos y cortes de energía."
+    ],
+    metric: "100% Cobertura",
+    metricLabel: "certificada en aulas",
+    image: "/evidence/rack-cuarto-comunicaciones-panoramica.jpg",
+    icon: "lan"
+  },
+  {
+    id: "CASO-03",
+    slug: "inventario-farmaceutico-fefo-peps",
+    title: "Gestión de Inventario Crítico con Motor Dual FEFO/PEPS",
+    client: "Cadena de Distribución Farmacéutica y Almacén Central",
+    industry: "Salud & Distribución",
+    problem: "Pérdidas económicas por medicamentos vencidos en bodega debido a falta de trazabilidad de lotes y despacho desordenado en almacén.",
+    solution: "Plataforma de inventario con algoritmo dual FEFO (First-Expired, First-Out) y PEPS. Alertas automáticas 60, 30 y 15 días antes de vencimiento, bloqueo de lotes comprometidos e impresión de etiquetas con código de barras.",
+    tech: ["PostgreSQL Neon", "Python", "React", "Docker", "Tailwind CSS"],
+    results: [
+      "Reducción del 92% en mermas por vencimiento de productos en los primeros 3 meses.",
+      "Trazabilidad completa de origen a destino por número de lote en auditorías de salud.",
+      "Aceleración de tiempos de empaque y despacho en un 40%."
+    ],
+    metric: "-92% Mermas",
+    metricLabel: "por caducidad de lotes",
+    image: "/evidence/hardware-ssd-nvme-m2-alta-velocidad.jpg",
+    icon: "inventory_2"
+  }
+];
 
 // ==========================================
 // INFORMACIÓN DETALLADA DEL FUNDADOR (CRISTIAN CAJUL)

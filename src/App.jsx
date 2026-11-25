@@ -4,8 +4,11 @@ import Navbar from "./assets/components/layout/Navbar";
 import Footer from "./assets/components/layout/Footer";
 import FloatingWhatsApp from "./assets/components/ui/WhatsAppButton";
 
-// PÁGINAS PRINCIPALES DEL SDD DESARROLLADOR JR
+// PÁGINAS PRINCIPALES DEL SDD DESARROLLADOR JR (v2.1)
 import Home from "./pages/Home";
+import Servicios from "./pages/Servicios";
+import Casos from "./pages/Casos";
+import Ingenieria from "./pages/Ingenieria";
 import Perfil from "./pages/Perfil";
 import Equipo from "./pages/Equipo";
 import Arquitectura from "./pages/Arquitectura";
@@ -47,13 +50,15 @@ function App() {
         <main className="flex-1 w-full">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/perfil" element={<Perfil />} />
+            <Route path="/servicios" element={<Servicios />} />
+            <Route path="/casos" element={<Casos />} />
             <Route path="/equipo" element={<Equipo />} />
+            <Route path="/perfil" element={<Perfil />} />
+            <Route path="/ingenieria" element={<Ingenieria />} />
             <Route path="/arquitectura" element={<Arquitectura />} />
             <Route path="/modulos" element={<Modulos />} />
-            <Route path="/portafolio" element={<Navigate to="/modulos" replace />} />
-            <Route path="/servicios" element={<Navigate to="/modulos" replace />} />
-            <Route path="/soluciones" element={<Navigate to="/arquitectura" replace />} />
+            <Route path="/portafolio" element={<Navigate to="/casos" replace />} />
+            <Route path="/soluciones" element={<Navigate to="/servicios" replace />} />
             <Route path="/tecnologia" element={<Tecnologia />} />
             <Route path="/calidad" element={<Calidad />} />
             <Route path="/evidencia" element={<Evidencia />} />

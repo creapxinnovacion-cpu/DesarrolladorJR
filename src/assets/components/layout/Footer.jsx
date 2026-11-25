@@ -24,26 +24,23 @@ export default function Footer() {
 
         {/* ENLACES RÁPIDOS Y BOTÓN DE WHATSAPP ELEGANTE */}
         <div className="flex flex-wrap items-center justify-center md:justify-end gap-3 sm:gap-4 text-xs font-sans font-medium">
-          <Link to="/perfil" className="text-slate-300 hover:text-[#5F90FF] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5F90FF] rounded px-1">
-            Perfil
+          <Link to="/" className="text-slate-300 hover:text-[#5F90FF] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5F90FF] rounded px-1">
+            Inicio
+          </Link>
+          <Link to="/servicios" className="text-slate-300 hover:text-[#5F90FF] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5F90FF] rounded px-1">
+            Servicios
+          </Link>
+          <Link to="/casos" className="text-slate-300 hover:text-[#5F90FF] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5F90FF] rounded px-1">
+            Casos
           </Link>
           <Link to="/equipo" className="text-[#FFC633] hover:text-amber-300 transition font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFC633] rounded px-1">
             Equipo (6)
           </Link>
-          <Link to="/arquitectura" className="text-slate-300 hover:text-[#5F90FF] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5F90FF] rounded px-1">
-            Arquitectura
+          <Link to="/ingenieria" className="text-[#5F90FF] hover:text-sky-300 transition font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5F90FF] rounded px-1">
+            Ingeniería
           </Link>
-          <Link to="/modulos" className="text-slate-300 hover:text-[#5F90FF] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5F90FF] rounded px-1">
-            Módulos
-          </Link>
-          <Link to="/tecnologia" className="text-slate-300 hover:text-[#5F90FF] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5F90FF] rounded px-1">
-            Tecnología
-          </Link>
-          <Link to="/calidad" className="text-slate-300 hover:text-[#5F90FF] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5F90FF] rounded px-1">
-            Calidad
-          </Link>
-          <Link to="/evidencia" className="text-[#5F90FF] hover:text-sky-300 transition font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5F90FF] rounded px-1">
-            Evidencia
+          <Link to="/contacto" className="text-slate-300 hover:text-[#5F90FF] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5F90FF] rounded px-1">
+            Contacto
           </Link>
           <a
             href={CONTACT_INFO.whatsappLink}
@@ -61,7 +58,7 @@ export default function Footer() {
       {/* METADATOS TÉCNICOS Y COPYRIGHT */}
       <div className="max-w-7xl mx-auto mt-8 pt-6 border-t border-[#203350]/60 text-xs font-mono text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
         <p>© {new Date().getFullYear()} Desarrollador JR · Fundador: Cristian Cajul · {CONTACT_INFO.company} {CONTACT_INFO.location}.</p>
-        <p className="text-[#5F90FF]">Especificación SDD-JR-001 v2.0 · IEEE 1016</p>
+        <p className="text-[#5F90FF]">Especificación {CONTACT_INFO.documentCode} {CONTACT_INFO.version} · IEEE 1016</p>
       </div>
     </footer>
   );
